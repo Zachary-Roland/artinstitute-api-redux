@@ -11,9 +11,9 @@ import {
   Switch,
 } from "react-router-dom";
 
-import Liked from "./components";
-import Login from "./components";
-import Search from "./components";
+import Liked from "./components/liked";
+import Login from "./components/login";
+import Search from "./components/search";
 
 function App({ username, clearLiked, clearSearch, clearUser }) {
   return (
