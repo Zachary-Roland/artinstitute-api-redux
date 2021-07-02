@@ -37,7 +37,7 @@ function App({ username, clearLiked, clearSearch, clearUser }) {
               activeClassName="active"
               to="/login"
               onClick={() => {
-                clearFavorites();
+                clearLiked();
                 clearSearch();
                 clearUser();
               }}
