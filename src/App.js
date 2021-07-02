@@ -2,6 +2,7 @@ import "./App.css";
 import React from "react";
 import { connect } from "react-redux";
 import { clearLiked, clearSearch, clearUser } from "./redux/actions";
+import ProtectedRoute from "./shared/protectedRoute";
 import {
   BrowserRouter as Router,
   NavLink,
