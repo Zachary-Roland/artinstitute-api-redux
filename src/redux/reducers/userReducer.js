@@ -1,6 +1,6 @@
 import { SET_USER, CLEAR_USER } from "../actions";
 
-const initialUserState = "";
+const initialUserState = { username: null };
 
 export default function userReducer(state = initialUserState, action) {
   switch (action.type) {

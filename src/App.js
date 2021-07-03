@@ -14,6 +14,7 @@ import {
 import Liked from "./components/liked";
 import Login from "./components/login";
 import Search from "./components/search";
+import { Button, AppBar } from "@material-ui/core";
 
 function App({ username, clearLiked, clearSearch, clearUser }) {
   return (
@@ -21,6 +22,17 @@ function App({ username, clearLiked, clearSearch, clearUser }) {
       <nav>
         {/* If logged in, show search page. If not logged in, show log in page. */}
         {!username && (
+          // <AppBar position="fixed">
+          //   <Button
+          //     component={NavLink}
+          //     variant="contained"
+          //     color="primary"
+          //     activeClassName="active"
+          //     to="/login"
+          //   >
+          //     Login
+          //   </Button>
+          // </AppBar>
           <NavLink activeClassName="active" to="/login">
             Login
           </NavLink>
@@ -49,9 +61,12 @@ function App({ username, clearLiked, clearSearch, clearUser }) {
       </nav>
       <main>
         <Switch>
-          <ProtectedRoute path="/login" reqUser={false} component={Login} />
-          <ProtectedRoute path="/search" reqUser={true} component={Search} />
-          <ProtectedRoute path="/liked" reqUser={true} component={Liked} />
+          {/* <ProtectedRoute path="/login" reqUser={false} component={Login} /> */}
+          <Route path="/login">
+            <Login />
+          </Route>
+          {/* <ProtectedRoute path="/search" reqUser={true} component={Search} /> */}
+          {/* <ProtectedRoute path="/liked" reqUser={true} component={Liked} /> */}
           <Route path="*">
             <Redirect to="/login" />
           </Route>
