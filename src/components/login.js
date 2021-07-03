@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { setUser } from "../redux/actions";
+import { useHistory } from "react-router";
 
 const Login = ({ setUser, username }) => {
   const [userInput, setUserInput] = useState("");
   const [password, setPassword] = useState("");
   const [minCharErr, setMinCharErr] = useState(false);
+  const history = useHistory();
   return (
     <>
       <form position="relative">
@@ -35,13 +37,14 @@ const Login = ({ setUser, username }) => {
           onClick={(e) => {
             console.log(userInput);
             console.log(password);
-            if (password.length < 4 && userInput.length < 4) {
-              setMinCharErr(true);
-            } else {
+            if (password.length > 4 && userInput.length > 4) {
+              setMinCharErr(false);
               setUser(userInput);
               setUserInput("");
               setPassword("");
-              console.log(username);
+              history.push("/search");
+            } else {
+              setMinCharErr(true);
             }
           }}
         >
@@ -54,7 +57,7 @@ const Login = ({ setUser, username }) => {
 
 function mapStateToProps(state) {
   return {
-    username: state.username,
+    username: state.user.username,
   };
 }
 const mapDispatchToProps = {

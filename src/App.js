@@ -61,12 +61,12 @@ function App({ username, clearLiked, clearSearch, clearUser }) {
       </nav>
       <main>
         <Switch>
-          {/* <ProtectedRoute path="/login" reqUser={false} component={Login} /> */}
+          <ProtectedRoute path="/login" reqUser={false} component={Login} />
           <Route path="/login">
             <Login />
           </Route>
-          {/* <ProtectedRoute path="/search" reqUser={true} component={Search} /> */}
-          {/* <ProtectedRoute path="/liked" reqUser={true} component={Liked} /> */}
+          <ProtectedRoute path="/search" reqUser={true} component={Search} />
+          <ProtectedRoute path="/liked" reqUser={true} component={Liked} />
           <Route path="*">
             <Redirect to="/login" />
           </Route>
@@ -78,7 +78,7 @@ function App({ username, clearLiked, clearSearch, clearUser }) {
 
 function mapStateToProps(state) {
   return {
-    username: state.username,
+    username: state.user.username,
   };
 }
 

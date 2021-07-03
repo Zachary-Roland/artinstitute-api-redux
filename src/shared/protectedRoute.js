@@ -12,7 +12,7 @@ function ProtectedRoute({ username, path, reqUser, component }) {
 
 function mapStateToProps(state) {
   return {
-    username: state.username,
+    username: state.user.username,
   };
 }
 
