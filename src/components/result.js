@@ -29,21 +29,15 @@ const Result = (result, setLiked, deleteLiked, isLiked, liked) => {
       {view && <h6>(Currently on Display at AIC)</h6>}
       {!view && <h6>(Not currently on Display at AIC)</h6>}
       {isLiked && (
-        <button
-          onChange={() => {
-            // e.preventDefsault();
-            deleteLiked(id);
-          }}
-        >
+        <button onChange={() => deleteLiked(id)}>
           Remove from Your Gallery
         </button>
       )}
       {!isLiked && (
         <button
-          onChange={() => {
-            setLiked({ artist, id, title, view, altText, img, date });
-            console.log(liked);
-          }}
+          onChange={() =>
+            setLiked({ artist, id, title, view, altText, img, date })
+          }
         >
           Add to Your Gallery
         </button>
