@@ -33,8 +33,8 @@ const Login = ({ setUser, username }) => {
           <h5>Your username and password must be at least 4 characters!</h5>
         ) : null}
         <button
-          type="button"
           onClick={(e) => {
+            e.preventDefault();
             console.log(userInput);
             console.log(password);
             if (password.length > 4 && userInput.length > 4) {
