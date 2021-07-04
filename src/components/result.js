@@ -21,21 +21,24 @@ const useStyles = makeStyles({
   },
 });
 
-const Result = (result, addLiked, deleteLiked, isLiked, liked) => {
-  const artist = result.artist;
-  const id = result.id;
-  const title = result.title;
-  const view = result.view;
-  const altText = result.altText;
-  const img = result.img;
-  const date = result.date;
+const Result = ({
+  id,
+  date,
+  view,
+  altText,
+  img,
+  title,
+  artist,
+  addLiked,
+  deleteLiked,
+  liked,
+  isLiked,
+}) => {
   const classes = useStyles();
   console.log(altText);
+  console.log(isLiked);
   return (
     <Card className={classes.card}>
-      {/* <h3>
-        {title} by {artist} ({date})
-      </h3> */}
       <CardMedia
         className={classes.media}
         component="img"
@@ -60,7 +63,12 @@ const Result = (result, addLiked, deleteLiked, isLiked, liked) => {
       </CardContent>
       <CardActions>
         {isLiked && (
-          <Button onClick={() => deleteLiked(id)}>
+          <Button
+            size="small"
+            variant="contained"
+            color="primary"
+            onClick={() => deleteLiked(id)}
+          >
             Remove from Your Gallery
           </Button>
         )}
@@ -78,26 +86,6 @@ const Result = (result, addLiked, deleteLiked, isLiked, liked) => {
           </Button>
         )}
       </CardActions>
-      {/* <img
-        src={`https://www.artic.edu/iiif/2/${img}/full/843,/0/default.jpg`}
-        alt={altText}
-        title={title}
-      ></img> */}
-      {/* {isLiked && (
-        <button onClick={() => deleteLiked(id)}>
-          Remove from Your Gallery
-        </button>
-      )}
-      {!isLiked && (
-        <button
-          onClick={() => {
-            console.log("button working");
-            addLiked({ artist, id, title, view, altText, img, date });
-          }}
-        >
-          Add to Your Gallery
-        </button>
-      )} */}
     </Card>
   );
 };
