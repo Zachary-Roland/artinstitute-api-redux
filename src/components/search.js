@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { setSearch, addLiked, deleteLiked } from "../redux/actions";
 import useFetch from "../hooks/useFetch";
 import Result from "./result";
+import { Paper } from "@material-ui/core";
 
 const Search = ({
   setSearch,
@@ -27,7 +28,7 @@ const Search = ({
   }, [data]);
 
   return (
-    <>
+    <Paper>
       <h3>
         Hello, {username}! Search the Art Institue of Chicago's Collection!
       </h3>
@@ -77,7 +78,7 @@ const Search = ({
           ))}
         </div>
       )}
-    </>
+    </Paper>
   );
 };
 function mapStateToProps(state) {
