@@ -4,12 +4,22 @@ import { setSearch, setLiked, deleteLiked } from "../redux/actions";
 import useFetch from "../hooks/useFetch";
 import Result from "./result";
 
-const Search = ({ setSearch, username, search }) => {
+const Search = ({
+  setSearch,
+  username,
+  search,
+  liked,
+  setLiked,
+  deleteLiked,
+}) => {
   const [searchInput, setSearchInput] = useState("");
   const [query, setQuery] = useState("");
   const { data, loading, error } = useFetch(query);
   const fieldsParam =
-    "&fields=thumbnail,id,title,image_id,artist_title,is_on_view";
+    "&fields=thumbnail,id,title,image_id,artist_title,is_on_view,date_display";
+  const likedIds = useMemo(() => {
+    return liked.map((val) => val.id);
+  }, [liked]);
   useEffect(() => {
     if (data) {
       setSearch(data.data);
@@ -19,7 +29,7 @@ const Search = ({ setSearch, username, search }) => {
   return (
     <>
       <h3>
-        Hello, {username}! Search the Art Institue of Chicago's Collection!{" "}
+        Hello, {username}! Search the Art Institue of Chicago's Collection!
       </h3>
       <form>
         <div>
@@ -47,12 +57,20 @@ const Search = ({ setSearch, username, search }) => {
       {error && <div>{error}</div>}
       {search && (
         <div>
-          {console.log(search)}
+          {/* {console.log(search)} */}
           {search.map((val) => (
             <Result
               key={val.id}
               id={val.id}
-              data={val}
+              result={val}
+              liked={liked}
+              date={val.date_display}
+              view={val.is_on_view}
+              altText={val.thumbnail.alt_text}
+              img={val.image_id}
+              title={val.title}
+              artist={val.artist_title}
+              isLiked={likedIds.includes(val.id)}
               setLiked={setLiked}
               deleteLiked={deleteLiked}
             />
@@ -66,10 +84,13 @@ function mapStateToProps(state) {
   return {
     username: state.user.username,
     search: state.search,
+    liked: state.liked,
   };
 }
 const mapDispatchToProps = {
   setSearch,
+  setLiked,
+  deleteLiked,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);
