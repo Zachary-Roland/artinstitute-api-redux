@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { setUser } from "../redux/actions";
 import { useHistory } from "react-router";
+import { Paper } from "@material-ui/core";
 
 const Login = ({ setUser, username }) => {
   const [userInput, setUserInput] = useState("");
@@ -9,7 +10,8 @@ const Login = ({ setUser, username }) => {
   const [minCharErr, setMinCharErr] = useState(false);
   const history = useHistory();
   return (
-    <>
+    <Paper>
+      <br></br>
       <form position="relative">
         <div>
           <label htmlFor="userInput">Username: </label>
@@ -51,7 +53,7 @@ const Login = ({ setUser, username }) => {
           Login!
         </button>
       </form>
-    </>
+    </Paper>
   );
 };
 

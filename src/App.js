@@ -14,7 +14,7 @@ import {
 import Liked from "./components/liked";
 import Login from "./components/login";
 import Search from "./components/search";
-import { Button, AppBar } from "@material-ui/core";
+import { Button, AppBar, Toolbar } from "@material-ui/core";
 
 function App({ username, clearLiked, clearSearch, clearUser }) {
   return (
@@ -22,40 +22,80 @@ function App({ username, clearLiked, clearSearch, clearUser }) {
       <nav>
         {/* If logged in, show search page. If not logged in, show log in page. */}
         {!username && (
-          // <AppBar position="fixed">
-          //   <Button
-          //     component={NavLink}
-          //     variant="contained"
-          //     color="primary"
-          //     activeClassName="active"
-          //     to="/login"
-          //   >
-          //     Login
-          //   </Button>
-          // </AppBar>
-          <NavLink activeClassName="active" to="/login">
-            Login
-          </NavLink>
+          <>
+            <AppBar position="sticky">
+              <Toolbar>
+                <Button
+                  component={NavLink}
+                  variant="contained"
+                  color="primary"
+                  activeClassName="active"
+                  to="/login"
+                >
+                  Login
+                </Button>
+              </Toolbar>
+            </AppBar>
+          </>
+          // <NavLink activeClassName="active" to="/login">
+          //   Login
+          // </NavLink>
         )}
         {username && (
           <>
-            <NavLink activeClassName="active" to="/search">
+            <AppBar position="sticky">
+              <Toolbar>
+                <Button
+                  component={NavLink}
+                  color="primary"
+                  variant="contained"
+                  activeClassName="active"
+                  to="/search"
+                >
+                  Search
+                </Button>
+                <Button
+                  component={NavLink}
+                  color="primary"
+                  variant="contained"
+                  activeClassName="active"
+                  to="/liked"
+                >
+                  Liked
+                </Button>
+                <Button
+                  component={NavLink}
+                  color="primary"
+                  variant="contained"
+                  activeClassName="active"
+                  to="/login"
+                  onClick={() => {
+                    clearLiked();
+                    clearSearch();
+                    clearUser();
+                  }}
+                >
+                  Logout
+                </Button>
+              </Toolbar>
+              {/* <NavLink activeClassName="active" to="/search">
               Search
-            </NavLink>
-            <NavLink activeClassName="active" to="/liked">
-              Liked
-            </NavLink>
-            <NavLink
-              activeClassName="active"
-              to="/login"
-              onClick={() => {
-                clearLiked();
-                clearSearch();
-                clearUser();
-              }}
-            >
-              Logout
-            </NavLink>
+            </NavLink> */}
+              {/* <NavLink activeClassName="active" to="/liked">
+                Liked
+              </NavLink> */}
+              {/* <NavLink
+                activeClassName="active"
+                to="/login"
+                onClick={() => {
+                  clearLiked();
+                  clearSearch();
+                  clearUser();
+                }}
+              >
+                Logout
+              </NavLink> */}
+            </AppBar>
           </>
         )}
       </nav>
