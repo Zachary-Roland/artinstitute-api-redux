@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
-import { setSearch, setLiked, deleteLiked } from "../redux/actions";
+import { setSearch, addLiked, deleteLiked } from "../redux/actions";
 import useFetch from "../hooks/useFetch";
 import Result from "./result";
 
@@ -9,7 +9,7 @@ const Search = ({
   username,
   search,
   liked,
-  setLiked,
+  addLiked,
   deleteLiked,
 }) => {
   const [searchInput, setSearchInput] = useState("");
@@ -71,7 +71,7 @@ const Search = ({
               title={val.title}
               artist={val.artist_title}
               isLiked={likedIds.includes(val.id)}
-              setLiked={setLiked}
+              addLiked={addLiked}
               deleteLiked={deleteLiked}
             />
           ))}
@@ -89,7 +89,7 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
   setSearch,
-  setLiked,
+  addLiked,
   deleteLiked,
 };
 

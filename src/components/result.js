@@ -6,8 +6,9 @@ import {
   Typography,
   CardMedia,
 } from "@material-ui/core";
+// import { addLiked } from "../redux/actions";
 
-const Result = (result, setLiked, deleteLiked, isLiked, liked) => {
+const Result = (result, addLiked, deleteLiked, isLiked, liked) => {
   const artist = result.artist;
   const id = result.id;
   const title = result.title;
@@ -29,15 +30,16 @@ const Result = (result, setLiked, deleteLiked, isLiked, liked) => {
       {view && <h6>(Currently on Display at AIC)</h6>}
       {!view && <h6>(Not currently on Display at AIC)</h6>}
       {isLiked && (
-        <button onChange={() => deleteLiked(id)}>
+        <button onClick={() => deleteLiked(id)}>
           Remove from Your Gallery
         </button>
       )}
       {!isLiked && (
         <button
-          onChange={() =>
-            setLiked({ artist, id, title, view, altText, img, date })
-          }
+          onClick={() => {
+            console.log("button working");
+            addLiked({ artist, id, title, view, altText, img, date });
+          }}
         >
           Add to Your Gallery
         </button>
