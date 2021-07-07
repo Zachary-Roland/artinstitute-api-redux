@@ -22,18 +22,19 @@ const useStyles = makeStyles({
 });
 
 const Result = ({
-  id,
-  date,
-  view,
-  altText,
-  img,
-  title,
   artist,
+  title,
+  img,
+  altText,
+  view,
+  date,
+  id,
   addLiked,
-  deleteLiked,
   liked,
+  deleteLiked,
   isLiked,
 }) => {
+  // const { artist, title, img, altText, view, date, id } = liked;
   const classes = useStyles();
   console.log(altText);
   console.log(isLiked);
@@ -78,7 +79,7 @@ const Result = ({
             variant="contained"
             color="primary"
             onClick={() => {
-              console.log("button working");
+              console.log(liked);
               addLiked({ artist, id, title, view, altText, img, date });
             }}
           >

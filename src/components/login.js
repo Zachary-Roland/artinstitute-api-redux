@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { setUser } from "../redux/actions";
 import { useHistory } from "react-router";
 import { makeStyles } from "@material-ui/styles";
-import { Paper, TextField, InputAdornment } from "@material-ui/core";
+import { Paper, TextField, InputAdornment, Button } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LockIcon from "@material-ui/icons/Lock";
 const useStyles = makeStyles((theme) => ({
@@ -55,7 +55,9 @@ const Login = ({ setUser, username }) => {
         {minCharErr ? (
           <h5>Your username and password must be at least 4 characters!</h5>
         ) : null}
-        <button
+        <Button
+          variant="contained"
+          color="primary"
           onClick={(e) => {
             e.preventDefault();
             console.log(userInput);
@@ -72,7 +74,7 @@ const Login = ({ setUser, username }) => {
           }}
         >
           Login!
-        </button>
+        </Button>
       </form>
     </Paper>
   );

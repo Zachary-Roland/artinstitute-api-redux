@@ -14,13 +14,14 @@ import {
 import Liked from "./components/liked";
 import Login from "./components/login";
 import Search from "./components/search";
-import { Button, AppBar, Toolbar } from "@material-ui/core";
+import { Container, Button, AppBar, Toolbar } from "@material-ui/core";
 
 function App({ username, clearLiked, clearSearch, clearUser }) {
   return (
     <Router>
       <nav>
         {/* If logged in, show search page. If not logged in, show log in page. */}
+
         {!username && (
           <>
             <AppBar position="sticky">
@@ -61,7 +62,7 @@ function App({ username, clearLiked, clearSearch, clearUser }) {
                   activeClassName="active"
                   to="/liked"
                 >
-                  Liked
+                  Your Gallery
                 </Button>
                 <Button
                   component={NavLink}
@@ -78,23 +79,6 @@ function App({ username, clearLiked, clearSearch, clearUser }) {
                   Logout
                 </Button>
               </Toolbar>
-              {/* <NavLink activeClassName="active" to="/search">
-              Search
-            </NavLink> */}
-              {/* <NavLink activeClassName="active" to="/liked">
-                Liked
-              </NavLink> */}
-              {/* <NavLink
-                activeClassName="active"
-                to="/login"
-                onClick={() => {
-                  clearLiked();
-                  clearSearch();
-                  clearUser();
-                }}
-              >
-                Logout
-              </NavLink> */}
             </AppBar>
           </>
         )}

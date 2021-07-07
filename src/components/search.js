@@ -19,7 +19,6 @@ const Search = ({
   const fieldsParam =
     "&fields=thumbnail,id,title,image_id,artist_title,is_on_view,date_display";
   const likedIds = useMemo(() => {
-    // TODO error val is undefined? Attempt fix
     return liked.map((val) => val.id);
   }, [liked]);
   useEffect(() => {
@@ -50,6 +49,7 @@ const Search = ({
           onClick={(e) => {
             e.preventDefault();
             setQuery(searchInput + fieldsParam);
+            // console.log(liked);
           }}
         >
           Search!
