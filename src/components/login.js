@@ -2,9 +2,18 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { setUser } from "../redux/actions";
 import { useHistory } from "react-router";
-import { Paper } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
+import { Paper, TextField, InputAdornment } from "@material-ui/core";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import LockIcon from "@material-ui/icons/Lock";
+const useStyles = makeStyles((theme) => ({
+  margin: {
+    margin: 50,
+  },
+}));
 
 const Login = ({ setUser, username }) => {
+  const classes = useStyles();
   const [userInput, setUserInput] = useState("");
   const [password, setPassword] = useState("");
   const [minCharErr, setMinCharErr] = useState(false);
@@ -13,24 +22,36 @@ const Login = ({ setUser, username }) => {
     <Paper>
       <br></br>
       <form position="relative">
-        <div>
-          <label htmlFor="userInput">Username: </label>
-          <input
-            id="userInput"
-            placeholder="Enter your username!"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-          ></input>
-        </div>
-        <div>
-          <label htmlFor="password">Password: </label>
-          <input
-            id="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></input>
-        </div>
+        <TextField
+          className={classes.margin}
+          id="usernameInput"
+          label="Username:"
+          variant="outlined"
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AccountCircle />
+              </InputAdornment>
+            ),
+          }}
+        />
+        <TextField
+          className={classes.margin}
+          id="passwordInput"
+          label="Password:"
+          variant="outlined"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <LockIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
         {minCharErr ? (
           <h5>Your username and password must be at least 4 characters!</h5>
         ) : null}
